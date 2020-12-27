@@ -1,5 +1,4 @@
 #! /bin/bash -x
-#read -p "Enter Number Of Flips" Num
 isHeads=1
 isTails=0
 headCount=0
@@ -37,4 +36,19 @@ then
 	echo "Tails win by " $(($tailCount-$headCount))
 else
 	echo "Tie"
+	while [ $(($headCount-$tailCount)) -lt 2 || $(($tailCount-$headCount)) -lt 2 ]
+	do
+		 flipCoin=$((RANDOM%2))
+   case $flipCoin in
+      $isHeads)
+         echo "Heads"
+         ((headCount++))
+			;;
+      $isTails)
+         echo "Tails"
+         ((tailCount++))
+         ;;
+	esac
+	done
+
 fi
